@@ -6,6 +6,8 @@ Python initialization scripts for virtualenv and buildout
 Requirements:
 ~~~~~~~~~~~~~
 
+GNU/Linux
+wget
 Python 2.7
 
 
