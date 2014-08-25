@@ -1,0 +1,35 @@
+Compiling Python interpreter
+
+The initBuildout.sh script will compile Python version 2.7.8
+You should adjust version numbers and folder name in the script and in buildout.cfg if necessary.
+
+The installation process will install the interpreter in the created folder: /opt/py/py278
+
+If the user has no permission to create folder in /opt, then change the folder name, or you could give permissions:
+
+sudo mkdir /opt/py
+chown $USER:$USER /opt/py
+
+1. Install build tools:
+
+Red Hat/CentOS:
+
+yum groupinstall 'Development Tools'
+
+Debian/Ubuntu:
+
+aptitude install build-essential
+
+2. Install system dependencies:
+
+Red Hat/CentOS:
+
+yum install openssl-devel zlib-devel readline-devel bzip2-devel ncurses-devel
+
+Debian/Ubuntu:
+
+aptitude install libssl-dev zlib-dev libreadline-dev libbz2-dev libncurses-dev
+
+3. Run the buildout initialization script
+
+./initBuildout.sh
