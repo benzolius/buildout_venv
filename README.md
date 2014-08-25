@@ -29,3 +29,10 @@ init_buildout.py
 Initialize a buildout environment working with the virtual environment created
 by install_venv.py
 The Python interpreter script will be: ../buildout/bin/py27
+
+compilePython folder
+--------------------
+
+Contains initialization scripts and files in order to compile Python from sources by
+buildout
+Please have a look at README in that folder
