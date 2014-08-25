@@ -33,7 +33,7 @@ try:
     output = subprocess.check_output(['bin/buildout', '--version'], stderr=subprocess.STDOUT)
     print ('Initialized {0}'.format(output))
 except OSError as ex:
-    if os.path.isfile('downloads/bootstrap.py'):
+    if os.path.isfile('downloads/bootstrap.py') and os.stat('downloads/bootstrap.py').st_size:
         print ('downloads/bootstrap.py already downloaded')
     else:
         print ('Downloading bootstrap.py')

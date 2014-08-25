@@ -4,8 +4,8 @@ import sys
 import subprocess
 
 TARGET_VERSION = '2.7'
-PYTHON = 'python'
-PIP = 'pip-1.5.4'
+PYTHON = sys.executable
+PIP = 'pip-1.5.6'
 
 print ('\n==========================================================================================\n')
 print 'Python version: {0}'.format(sys.version)
@@ -37,7 +37,7 @@ try:
     output = subprocess.check_output(['venv/bin/python', '--version'], stderr=subprocess.STDOUT)
     print ('Python interpreter version of virtualenv: {0}'.format(output))
 except OSError as ex:
-    if os.path.isfile('downloads/virtualenv.py'):
+    if os.path.isfile('downloads/virtualenv.py') and os.stat('downloads/virtualenv.py').st_size:
         print ('downloads/virtualenv.py already downloaded')
     else:
         print ('Downloading virtualenv.py')
@@ -45,7 +45,6 @@ except OSError as ex:
 
     print 'Installing virtualenv'
     subprocess.call([PYTHON, 'downloads/virtualenv.py', '--clear', 'venv'])
-
 
 # Handle setuptools for virtualenv
 try:
@@ -61,7 +60,7 @@ try:
     output = subprocess.check_output(['venv/bin/pip', '--version'], stderr=subprocess.STDOUT)
     print ('Pip version of virtualenv: {0}'.format(output))
 except OSError as ex:
-    if os.path.isfile(PIP.join(('downloads/', '.tar.gz'))):
+    if os.path.isfile(PIP.join(('downloads/', '.tar.gz'))) and os.stat(PIP.join(('downloads/', '.tar.gz'))).st_size:
         print (PIP.join(('downloads/', '.tar.gz already downloaded')))
     else:
         print ('Downloading pip')
