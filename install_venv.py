@@ -5,7 +5,7 @@ import subprocess
 
 TARGET_VERSION = '3.4'
 PYTHON = sys.executable
-PIP = 'pip-8.0.0'
+PIP = 'pip-8.1.1'
 
 print ('\n==========================================================================================\n')
 print ('Python version: {0}'.format(sys.version))
