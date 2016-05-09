@@ -5,7 +5,6 @@ import subprocess
 
 TARGET_VERSION = '3.4'
 PYTHON = sys.executable
-PIP = 'pip-8.1.1'
 
 print ('\n==========================================================================================\n')
 print ('Python version: {0}'.format(sys.version))
@@ -25,8 +24,8 @@ except OSError as ex:
     if 'File exists' not in str(ex):
         print (str(ex))
 
-#os.chdir('buildout')
-#print ('Change directory to buildout')
+# os.chdir('buildout')
+# print ('Change directory to buildout')
 
 print ('\n==========================================================================================\n')
 print ('Usually here should appear only 3 lines asserting version numbers:')
@@ -46,34 +45,27 @@ except OSError as ex:
     print('Installing virtualenv')
     subprocess.call([PYTHON, 'downloads/virtualenv.py', '--clear', 'venv'])
 
-# Handle setuptools for virtualenv
+# Print setuptools version
 try:
     output = subprocess.check_output(['venv/bin/easy_install', '--version'], stderr=subprocess.STDOUT)
     print ('Setuptools version of virtualenv: {0}'.format(output))
 except OSError as ex:
-    print('Installing setuptools')
-    subprocess.call(['wget', '--no-check-certificate', 'https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py', '-O', 'downloads/ez_setup.py'])
-    subprocess.call(['venv/bin/python', 'downloads/ez_setup.py', '--insecure'])
+    print('Setuptools will be installed by get-pip.py')
 
 # Handle pip for virtualenv
 try:
     output = subprocess.check_output(['venv/bin/pip', '--version'], stderr=subprocess.STDOUT)
     print ('Pip version of virtualenv: {0}'.format(output))
 except OSError as ex:
-    if os.path.isfile(PIP.join(('downloads/', '.tar.gz'))) and os.stat(PIP.join(('downloads/', '.tar.gz'))).st_size:
-        print (PIP.join(('downloads/', '.tar.gz already downloaded')))
+    if os.path.isfile('downloads/get-pip.py') and os.stat('downloads/get-pip.py').st_size:
+        print ('downloads/get-pip.py already downloaded')
     else:
-        print ('Downloading pip')
-        subprocess.call(['wget', '--no-check-certificate', PIP.join(('https://pypi.python.org/packages/source/p/pip/', '.tar.gz')), '-O', PIP.join(('downloads/', '.tar.gz'))])
+        print ('Downloading get-pip.py')
+        subprocess.call(['wget', '--no-check-certificate', 'https://bootstrap.pypa.io/get-pip.py', '-O', 'downloads/get-pip.py'])
 
     print ('Installing pip')
-    subprocess.call(['tar', 'xzvf', ''.join(('downloads/', PIP, '.tar.gz'))])
-    os.chdir(PIP)
-    print ('Change directory to {0}'.format(PIP))
-    print ('Running: ../venv/bin/python setup.py install')
-    subprocess.call(['../venv/bin/python', 'setup.py', 'install'])
-    os.chdir('..')
-    subprocess.call(['rm', '-rf', PIP])
+    print ('Running: venv/bin/python downloads/get-pip.py')
+    subprocess.call(['venv/bin/python', 'downloads/get-pip.py'])
 
 # Disabling the SSL CERTIFICATION for git
 subprocess.call(['git', 'config', '--global', 'http.sslVerify', 'false'])

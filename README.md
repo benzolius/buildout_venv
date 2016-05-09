@@ -8,7 +8,7 @@ Requirements:
 
 GNU/Linux
 wget
-Python 2.7
+Python 2.7-3.5
 
 
 Advantages:
@@ -22,11 +22,13 @@ Nor virtualenv nor buildout will be installed in the system.
 install_venv.py
 ---------------
 
-Installs a virtual Python environment in a sibling folder 'buildout/venv'.
-The Python interpreter will be: ../buildout/venv/bin/python
+Installs a virtual Python environment in a folder below the current one '../venv'.
+The Python interpreter will be: ../venv/bin/python
 
 init_buildout.py
 ----------------
+
+Warning: This script was not updated for the changes in install_venv.py
 
 Initialize a buildout environment working with the virtual environment created
 by install_venv.py
