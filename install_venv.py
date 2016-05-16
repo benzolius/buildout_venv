@@ -35,7 +35,15 @@ except OSError as ex:
         print ('downloads/virtualenv.py already downloaded')
     else:
         print ('Downloading virtualenv.py')
-        subprocess.call(['wget', '--no-check-certificate', 'https://raw.github.com/pypa/virtualenv/master/virtualenv.py', '-O', 'downloads/virtualenv.py'])
+        try:
+            subprocess.call(['wget', '--no-check-certificate', 'https://raw.github.com/pypa/virtualenv/master/virtualenv.py', '-O', 'downloads/virtualenv.py'])
+        except Exception as ex:
+            print (str(ex))
+            print ('Trying by curl:')
+            try:
+                subprocess.call('curl -sL https://raw.github.com/pypa/virtualenv/master/virtualenv.py > downloads/virtualenv.py', shell=True)
+            except Exception as ex:
+                print (str(ex))
 
     print('Installing virtualenv')
     subprocess.call([PYTHON, 'downloads/virtualenv.py', '--clear', 'venv'])
@@ -56,7 +64,15 @@ except OSError as ex:
         print ('downloads/get-pip.py already downloaded')
     else:
         print ('Downloading get-pip.py')
-        subprocess.call(['wget', '--no-check-certificate', 'https://bootstrap.pypa.io/get-pip.py', '-O', 'downloads/get-pip.py'])
+        try:
+            subprocess.call(['wget', '--no-check-certificate', 'https://bootstrap.pypa.io/get-pip.py', '-O', 'downloads/get-pip.py'])
+        except Exception as ex:
+            print (str(ex))
+            print ('Trying by curl:')
+            try:
+                subprocess.call('curl -sL https://bootstrap.pypa.io/get-pip.py > downloads/get-pip.py', shell=True)
+            except Exception as ex:
+                print (str(ex))
 
     print ('Installing pip')
     print ('Running: venv/bin/python downloads/get-pip.py')
