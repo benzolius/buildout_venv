@@ -3,16 +3,11 @@ import os
 import sys
 import subprocess
 
-TARGET_VERSION = '3.4'
 PYTHON = sys.executable
 
 print ('\n==========================================================================================\n')
 print ('Python version: {0}'.format(sys.version))
 print ('\n==========================================================================================\n')
-
-print ('Please change the value of TARGET_VERSION and PYTHON in this script, if you would like to run with other Python version\n')
-if not sys.version.startswith(TARGET_VERSION):
-    sys.exit(0)
 
 
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
