@@ -1,6 +1,19 @@
 buildout_venv
 =============
 
+Warning!
+
+These scripts are very old, nowadays there are better ways to do the same.
+
+For example you can create a new virtual environment by
+
+```
+python -m venv new_virtual_environment_folder
+```
+
+[Creating virtual environments](https://docs.python.org/3/library/venv.html)
+
+
 Python initialization scripts for virtualenv and buildout
 
 Requirements:
